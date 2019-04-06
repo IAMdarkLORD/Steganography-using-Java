@@ -20,11 +20,6 @@ import java.util.*;
 
  
 
-/*
-
- Class Steganography
-
- */
 
 public class Steganography
 
@@ -32,89 +27,13 @@ public class Steganography
 
      
 
-    /*
-
-     *Steganography Empty Constructor
-
-     */
-
     public Steganography()
 
     {   
             
     }
 
-    
-    /*public static void main(String[] args) 
-    {
-            
-            String path,origin,mess,extnsn,stegan,ex_mess;
-            // boolean xyz;
-            Scanner sc = new Scanner(System.in);
-
-            System.out.println("Enter image location");
-            path = sc.next();
-            
-            System.out.println("Image name");   
-            origin = sc.next();
-
-            System.out.println("Extension of image");
-            extnsn = sc.next();
-
-            System.out.println("Name of embeded image to be saved..");
-            stegan = sc.next();
-
-        
-            System.out.println("Enter Message");
-            mess = sc.next();
-            
-            
-          
-
-            Steganography stego = new  Steganography();
-
-            if(stego.encode(path,origin,extnsn,stegan,mess))
-            {
-                System.out.println("Message embeded succesfully");
-            }    
-            else
-            {
-                System.out.println("Message not embeded code exiting...");
-                System.exit(0);
-            }  
-            try
-            {
-                ex_mess = stego.decode(path, stegan); 
-
-                System.out.println("Embeded Message :: "+ex_mess);
-            }
-            catch(Exception e)
-            {
-                System.out.println(e);
-            }
-            
-
-    }*/
-     
-
-    /*
-
-     *Encrypt an image with text, the output file will be of type .png
-
-     *@param path        The path (folder) containing the image to modify
-
-     *@param original   The name of the image to modify
-
-     *@param ext1         The extension type of the image to modify (jpg, png)
-
-     *@param stegan   The output name of the file
-
-     *@param message  The text to hide in the image
-
-     *@param type     integer representing either basic or advanced encoding
-
-     */
-
+  
     public boolean encode(String path, String original, String ext1, String stegan, String message)
 
    {
@@ -137,17 +56,6 @@ public class Steganography
 
      
 
-    /*
-
-     *Decrypt assumes the image being used is of type .png, extracts the hidden text from an image
-
-     *@param path   The path (folder) containing the image to extract the message from
-
-     *@param name The name of the image to extract the message from
-
-     *@param type integer representing either basic or advanced encoding
-
-     */
 
     public String decode(String path, String name)
 
@@ -187,19 +95,6 @@ public class Steganography
 
      
 
-    /*
-
-     *Returns the complete path of a file, in the form: path\name.ext
-
-     *@param path   The path (folder) of the file
-
-     *@param name The name of the file
-
-     *@param ext      The extension of the file
-
-     *@return A String representing the complete path of a file
-
-     */
 
     public String image_path(String path, String name, String ext)
 
@@ -211,17 +106,6 @@ public class Steganography
 
      
 
-   /*
-
-     *Get method to return an image file
-
-    *@param f The complete path name of the image.
-
-    *@return A BufferedImage of the supplied file path
-
-     *@see  Steganography.image_path
-
-     */
 
     private BufferedImage getImage(String f)
 
@@ -257,19 +141,6 @@ public class Steganography
 
      
 
-    /*
-
-     *Set method to save an image file
-
-     *@param image The image file to save
-
-     *@param file     File  to save the image to
-
-     *@param ext      The extension and thus format of the file to be saved
-
-     *@return Returns true if the save is succesful
-
-     */
 
     public boolean setImage(BufferedImage image, File file, String ext)
 
@@ -302,19 +173,7 @@ public class Steganography
 
     }
 
-     
 
-    /*
-
-     *Handles the addition of text into an image
-
-     *@param image The image to add hidden text to
-
-     *@param text    The text to hide in the image
-
-     *@return Returns the image with the text embedded in it
-
-     */
 
     private BufferedImage add_text(BufferedImage image, String text)
 
@@ -354,16 +213,6 @@ public class Steganography
 
      
 
-    /*
-
-     *Creates a user space version of a Buffered Image, for editing and saving bytes
-
-     *@param image The image to put into user space, removes compression interferences
-
-     *@return The user space version of the supplied image
-
-    */
-
     private BufferedImage user_space(BufferedImage image)
 
     {
@@ -386,18 +235,7 @@ public class Steganography
 
     /*
 stark4498-narak-creation
-     *Gets the byte array of an image
-
-     *@param image The image to get byte data from
-
-    *@return Returns the byte array of the image supplied
-
-     *@see Raster
-
-     *@see WritableRaster
-
-     *@see DataBufferByte
-
+    
      */
 
     private byte[] get_byte_data(BufferedImage image)
@@ -414,33 +252,13 @@ stark4498-narak-creation
 
      
 
-    /*
-
-     *Gernerates proper byte format of an integer
-
-     *@param i The integer to convert
-
-     *@return Returns a byte[4] array converting the supplied integer into bytes
-
-     */
+ 
 
     private byte[] bit_conversion(int i)
 
     {
 
-        //originally integers (ints) cast into bytes
-
-        //byte byte7 = (byte)((i & 0xFF00000000000000L) >>> 56);
-
-        //byte byte6 = (byte)((i & 0x00FF000000000000L) >>> 48);
-
-        //byte byte5 = (byte)((i & 0x0000FF0000000000L) >>> 40);
-
-        //byte byte4 = (byte)((i & 0x000000FF00000000L) >>> 32);
-
-         
-
-        //only using 4 bytes
+   
 
         byte byte3 = (byte)((i & 0xFF000000) >>> 24); //0
         byte byte2 = (byte)((i & 0x00FF0000) >>> 16); //0
@@ -459,16 +277,7 @@ stark4498-narak-creation
 
     /*
 stark4498-narak-creation
-     *Encode an array of bytes into another array of bytes at a supplied offset
-
-     *@param image   Array of data representing an image
-
-     *@param addition Array of data to add to the supplied image data array
-
-     *@param offset   The offset into the image array to add the addition data
-
-     *@return Returns data Array of merged image and addition data
-
+    
      */
 
     private byte[] encode_text(byte[] image, byte[] addition, int offset)
@@ -521,15 +330,7 @@ stark4498-narak-creation
 
      
 // stark4498-narak-creation
-    /*
-
-   *Retrieves hidden text from an image
-
-     *@param image Array of data, representing an image
-
-     *@return Array of data which contains the hidden text
-
-     */
+  
 
     private byte[] decode_text(byte[] image)
 
@@ -580,4 +381,3 @@ stark4498-narak-creation
     }
 
 }
-//////////
